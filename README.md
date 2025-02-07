@@ -8,11 +8,9 @@ This work is based on some of the ideas in the legacy [Xdebug helper](https://ch
 
 The motivation for this new extension was that `xdebug-helper` will soon no longer be supported and was limited to Chrome in any case. I had originally intended to update and submit a PR on that extension, but realized that it was probably better to just start from scratch using a more modern approach.
 
+[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-extension/aoelhdemabeimdhedkidlnbkfhnhgnhm) [![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/)
 
-
-[![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/)
-
-_* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc) that allow Chrome extensions, however these are untested and are not offically supported by this project. Currently awiaitng review in the Chrome Web Store, and Edge Addons_
+_* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc) that allow Chrome extensions, however these are untested and are not offically supported by this project. Currently awiaitng review in Edge Addons_
 
 ## Features
 
@@ -28,6 +26,10 @@ _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc
 
 ### Chrome
 
+[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-extension/aoelhdemabeimdhedkidlnbkfhnhgnhm)
+
+From source
+
 1) Clone the `xdebug-extension` repository
 2) Go to `chrome://extensions/`
 3) Turn on "Developer Mode"
@@ -40,7 +42,7 @@ From Mozilla Addons
 
 [![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/)
 
-Build from source
+From source
 
 1) Clone the `xdebug-extension` repository
 2) Run the `build.sh` file 
@@ -48,7 +50,7 @@ Build from source
 4) Choose "Load Temporary Add-on…"
 5) Select the `xdebug-extension@[version].xpi` file in the `xdebug-extension/build` directory.
 
-Prebuilt version
+Prebuilt
 
 1) Download the latest xpi file from [releases](https://github.com/FraserChapman/xdebug-extension/releases) e.g `xdebug-extension@1.0.0.xpi`
 2) Click on "This Firefox"
@@ -57,12 +59,13 @@ Prebuilt version
    
 ### Edge 
 
+From source
+
 1) Clone the `xdebug-extension` repository
 2) Go to `edge://extensions/`
 3) Turn on "Developer Mode"
 4) Choose "Load unpacked"
 5) select the `src` directory inside the `xdebug-extension` directory you downloaded in step one.
-
    
 ## Usage
 
