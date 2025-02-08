@@ -79,7 +79,7 @@ Once installed, you can:
 - Toggle profiling with a shortcut (default: <kbd>Alt</kbd>+<kbd>V</kbd>) or from the popup menu.
 - Toggle tracing with a shortcut (default: <kbd>Alt</kbd>+<kbd>B</kbd>) or from the popup menu.
 - Click the extension icon to open the popup menu and select a debugging state: Debug, Profile, Trace, or Disable.
-- Clink the "options" link in the popupto configure the IDE key, profile trigger, and trace trigger. Alternatively, right click the extension icon and choose "Options".
+- Clink the "options" link in the popup to configure the IDE key, profile trigger, and trace trigger. Alternatively, right click the extension icon and choose "Options".
 
 ### Custom shortcuts
 
@@ -112,3 +112,12 @@ If you want to contribute and make it even better, feel free to fork the reposit
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Icons
+
+![debug](src/img/debug16.png) [Freepik](https://www.flaticon.com/free-icons/bug)
+
+![trace](src/img/trace16.png) [rukanicon](https://www.freepik.com/icon/search_4529794#fromView=search&page=2&position=4&uuid=b4d99857-87e6-4c31-8244-0681fc37c27c)
+
+![profile](src/img/profile16.png) [UIcons](https://www.freepik.com/icon/alarm-clock_3914623#fromView=search&page=2&position=53&uuid=2ee3fb72-66da-4ded-b901-b35f13d97f02)
+
