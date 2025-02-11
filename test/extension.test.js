@@ -63,9 +63,7 @@ describe('Options Page Tests', () => {
         // Assert
         await page.waitForSelector('form.success');
         const storedValue = await waitForStoredValue(page, 'xdebugIdeKey');
-
         expect(storedValue).toBe(ideKey);
-        await browser.close();
     });
 
     test('sets Trace Trigger correctly and saves', async () => {
@@ -84,9 +82,7 @@ describe('Options Page Tests', () => {
         // Assert
         await page.waitForSelector('form.success');
         const storedValue = await waitForStoredValue(page, 'xdebugTraceTrigger');
-
         expect(storedValue).toBe(traceTrigger);
-        await browser.close();
     });
 
     test('sets Profile Trigger correctly and saves', async () => {
@@ -105,10 +101,7 @@ describe('Options Page Tests', () => {
         // Assert
         await page.waitForSelector('form.success');
         const storedValue = await waitForStoredValue(page, 'xdebugProfileTrigger');
-
-
         expect(storedValue).toBe(profileTrigger);
-        await browser.close();
     });
 });
 
@@ -133,7 +126,6 @@ describe('Popup Tests', () => {
         const popupPage = await openPopup(browser, extensionPath);
 
         // Act
-        await popupPage.waitForSelector('label[for="debug"]');
         await popupPage.click('label[for="debug"]');
 
         // Assert
@@ -151,7 +143,6 @@ describe('Popup Tests', () => {
         const popupPage = await openPopup(browser, extensionPath);
 
         // Act
-        await popupPage.waitForSelector('label[for="trace"]');
         await popupPage.click('label[for="trace"]');
 
         // Assert
@@ -169,7 +160,6 @@ describe('Popup Tests', () => {
         const popupPage = await openPopup(browser, extensionPath);
 
         // Act
-        await popupPage.waitForSelector('label[for="profile"]');
         await popupPage.click('label[for="profile"]');
 
         // Assert
@@ -187,7 +177,6 @@ describe('Popup Tests', () => {
         const popupPage = await openPopup(browser, extensionPath);
 
         // Act
-        await popupPage.waitForSelector('label[for="disable"]');
         await popupPage.click('label[for="disable"]');
 
         // Assert

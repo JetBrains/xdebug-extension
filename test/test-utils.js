@@ -1,5 +1,4 @@
-const puppeteer = require('puppeteer');
-
+const puppeteer = require('puppeteer-core');
 
 /**
  * Launches the Chromium browser with the extension loaded.
