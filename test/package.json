@@ -10,6 +10,8 @@
         "@jest/globals": "^29.7.0"
     },
     "scripts": {
-        "test": "npx jest ."
+        "test": "npx jest .",
+        "test-options": "npx jest -t 'Options Page Tests'",
+        "test-popup": "npx jest -t 'Popup Tests'"
     }
 }

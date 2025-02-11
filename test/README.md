@@ -41,20 +41,23 @@ Upon successful execution, you should see output similar to this:
 > xdebug-extension-test@1.0.0 test
 > npx jest .
 
- PASS  ./extension.test.js (8.03 s)
+ PASS  ./extension.test.js (10.205 s)
   Options Page Tests
-    ✓ renders correctly (2599 ms)
+    ✓ renders correctly (1031 ms)
+    ✓ sets IDE Key correctly and saves (1529 ms)
+    ✓ sets Trace Trigger correctly and saves (1070 ms)
+    ✓ sets Profile Trigger correctly and saves (1059 ms)
   Popup Tests
-    ✓ renders correctly (979 ms)
-    ✓ toggles debug mode and sets XDEBUG_SESSION cookie (960 ms)
-    ✓ toggles trace mode and sets XDEBUG_TRACE cookie (1070 ms)
-    ✓ toggles profile mode and sets XDEBUG_PROFILE cookie (1100 ms)
-    ✓ toggles disabled mode and removes all cookies (1070 ms)
+    ✓ renders correctly (1072 ms)
+    ✓ toggles debug mode and sets XDEBUG_SESSION cookie (1087 ms)
+    ✓ toggles trace mode and sets XDEBUG_TRACE cookie (1101 ms)
+    ✓ toggles profile mode and sets XDEBUG_PROFILE cookie (1088 ms)
+    ✓ toggles disabled mode and removes all cookies (920 ms)
 
 Test Suites: 1 passed, 1 total
-Tests:       6 passed, 6 total
+Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        8.057 s
+Time:        10.221 s
 Ran all test suites matching /./i.
 ```
 
