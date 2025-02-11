@@ -1,5 +1,5 @@
-const { test, expect } = require('@jest/globals');
 const config = require('./test-config');
+
 const {
     launchBrowser,
     getExtensionPath,

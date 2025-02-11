@@ -5,12 +5,9 @@
         "jest": "^29.7.0",
         "puppeteer-core": "^24.2.0"
     },
-    "devDependencies": {
-        "@jest/globals": "^29.7.0"
-    },
     "scripts": {
         "test": "npx jest .",
-        "test-options": "npx jest -t 'Options Page Tests'",
+        "test-options": "npx jest -t 'Options Tests'",
         "test-popup": "npx jest -t 'Popup Tests'"
     }
 }
