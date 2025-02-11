@@ -1,7 +1,6 @@
 {
     "name": "xdebug-extension-test",
     "version": "1.0.0",
-    "type": "module",
     "dependencies": {
         "jest": "^29.7.0",
         "puppeteer-core": "^24.2.0"

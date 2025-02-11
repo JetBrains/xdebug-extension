@@ -1,3 +1,4 @@
+const { test, expect } = require('@jest/globals');
 const config = require('./test-config');
 const {
     launchBrowser,
@@ -9,11 +10,10 @@ const {
     waitForStoredValue,
 } = require('./test-utils.js');
 
+// Test Setup
 
 let browser = null;
 let extensionPath = null;
-
-// Test Setup
 
 beforeEach(async () => {
     browser = await launchBrowser(config);
@@ -33,8 +33,8 @@ afterEach(async () => {
 
 // Test Suites
 
-describe('Options Page Tests', () => {
-    test('renders correctly', async () => {
+describe('Options Tests', () => {
+    test('Should render options correctly', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(`${extensionPath}/options.html`);
@@ -47,7 +47,7 @@ describe('Options Page Tests', () => {
         await expect(page.$('button[type="submit"]')).resolves.not.toBeNull(); // Save
     });
 
-    test('sets IDE Key correctly and saves', async () => {
+    test('Should set IDE Key correctly and save', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(`${extensionPath}/options.html`);
@@ -66,7 +66,7 @@ describe('Options Page Tests', () => {
         expect(storedValue).toBe(ideKey);
     });
 
-    test('sets Trace Trigger correctly and saves', async () => {
+    test('Should set Trace Trigger correctly and save', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(`${extensionPath}/options.html`);
@@ -85,7 +85,7 @@ describe('Options Page Tests', () => {
         expect(storedValue).toBe(traceTrigger);
     });
 
-    test('sets Profile Trigger correctly and saves', async () => {
+    test('Should set Profile Trigger correctly and save', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(`${extensionPath}/options.html`);
@@ -103,10 +103,28 @@ describe('Options Page Tests', () => {
         const storedValue = await waitForStoredValue(page, 'xdebugProfileTrigger');
         expect(storedValue).toBe(profileTrigger);
     });
+
+
+    test('Should clear all text inputs when the clear button is clicked', async () => {
+        // Arrange
+        const page = await browser.newPage();
+        await page.goto(`${extensionPath}/options.html`);
+        await page.type('#idekey', 'foo');
+        await page.type('#tracetrigger', 'bar');
+        await page.type('#profiletrigger', 'bat');
+
+        // Act
+        await page.click('button[type="reset"]');
+
+        // Assert
+        await expect(page.$eval('#idekey', el => el.value)).resolves.toBe('');
+        await expect(page.$eval('#tracetrigger', el => el.value)).resolves.toBe('');
+        await expect(page.$eval('#profiletrigger', el => el.value)).resolves.toBe('');
+    });
 });
 
 describe('Popup Tests', () => {
-    test('renders correctly', async () => {
+    test('Should render popup correctly', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(`${extensionPath}/popup.html`);
@@ -119,7 +137,7 @@ describe('Popup Tests', () => {
         await expect(page.$('#options')).resolves.not.toBeNull(); // Options link
     });
 
-    test('toggles debug mode and sets XDEBUG_SESSION cookie', async () => {
+    test('Should toggle debug mode and sets XDEBUG_SESSION cookie', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
@@ -132,11 +150,11 @@ describe('Popup Tests', () => {
         await waitForCookieToExist(page);
         const cookies = await browser.cookies(config.examplePage);
         const xdebugSessionCookie = findCookie(cookies, 'XDEBUG_SESSION');
-        expect(xdebugSessionCookie).not.toBeNull();
+        expect(cookies.length).toBe(1);
         expect(xdebugSessionCookie.value).toBe(config.defaultKey);
     });
 
-    test('toggles trace mode and sets XDEBUG_TRACE cookie', async () => {
+    test('Should toggle trace mode and sets XDEBUG_TRACE cookie', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
@@ -149,11 +167,11 @@ describe('Popup Tests', () => {
         await waitForCookieToExist(page);
         const cookies = await browser.cookies(config.examplePage);
         const xdebugTraceCookie = findCookie(cookies, 'XDEBUG_TRACE');
-        expect(xdebugTraceCookie).not.toBeNull();
+        expect(cookies.length).toBe(1);
         expect(xdebugTraceCookie.value).toBe(config.defaultKey);
     });
 
-    test('toggles profile mode and sets XDEBUG_PROFILE cookie', async () => {
+    test('Should toggle profile mode and sets XDEBUG_PROFILE cookie', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
@@ -166,11 +184,11 @@ describe('Popup Tests', () => {
         await waitForCookieToExist(page);
         const cookies = await browser.cookies(config.examplePage);
         const xdebugProfileCookie = findCookie(cookies, 'XDEBUG_PROFILE');
-        expect(xdebugProfileCookie).not.toBeNull();
+        expect(cookies.length).toBe(1);
         expect(xdebugProfileCookie.value).toBe(config.defaultKey);
     });
 
-    test('toggles disabled mode and removes all cookies', async () => {
+    test('Should toggle disabled mode and removes all cookies', async () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
@@ -183,5 +201,19 @@ describe('Popup Tests', () => {
         await waitForCookieToClear(page);
         const cookies = await browser.cookies(config.examplePage);
         expect(cookies.length).toBe(0);
+    });
+
+    test('Should open options page in new tab', async () => {
+        // Arrange
+        const [page] = await browser.pages();
+        await page.goto(config.examplePage);
+        const popupPage = await openPopup(browser, extensionPath);
+
+        // Act
+        await popupPage.click('#options');
+
+        // Assert
+        const optionsPage = await browser.waitForTarget(target => target.url() === `${extensionPath}/options.html`);
+        expect(optionsPage).toBeTruthy();
     });
 });
