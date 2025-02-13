@@ -1,7 +1,7 @@
 module.exports = {
     extensionDir: '../src',
-    chromiumPath: process.env.CHROMIUM_PATH || '/usr/bin/chromium-browser',
-    examplePage: process.env.EXAMPLE_PAGE || 'https://example.com',
+    browserPath: process.env.BROWSER_PATH || '/snap/bin/chromium',
+    examplePage: process.env.EXAMPLE_PAGE || 'https://example.com/',
     defaultKey: process.env.DEFAULT_KEY || 'XDEBUG_ECLIPSE',
     timeout: process.env.TIMEOUT || 30000,
     headless: process.env.HEADLESS || false,

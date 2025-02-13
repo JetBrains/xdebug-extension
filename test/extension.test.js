@@ -54,11 +54,8 @@ describe('Options Tests', () => {
 
         // Act
         const ideKey = 'IDE_KEY_TEST';
-        await page.waitForSelector('#idekey');
-        await page.evaluate(() => document.getElementById('idekey').value = '');
-        await page.type('#idekey', ideKey);
-        await page.waitForSelector('button[type="submit"]');
-        await page.click('button[type="submit"]');
+        await page.locator('#idekey').fill(ideKey);
+        await page.locator('button[type="submit"]').click();
 
         // Assert
         await page.waitForSelector('form.success');
@@ -73,11 +70,8 @@ describe('Options Tests', () => {
 
         // Act
         const traceTrigger = 'TRACE_TRIGGER_TEST';
-        await page.waitForSelector('#tracetrigger');
-        await page.evaluate(() => document.getElementById('tracetrigger').value = '');
-        await page.type('#tracetrigger', traceTrigger);
-        await page.waitForSelector('button[type="submit"]');
-        await page.click('button[type="submit"]');
+        await page.locator('#tracetrigger').fill(traceTrigger);
+        await page.locator('button[type="submit"]').click();
 
         // Assert
         await page.waitForSelector('form.success');
@@ -92,11 +86,8 @@ describe('Options Tests', () => {
 
         // Act
         const profileTrigger = 'PROFILE_TRIGGER_TEST';
-        await page.waitForSelector('#profiletrigger');
-        await page.evaluate(() => document.getElementById('profiletrigger').value = '');
-        await page.type('#profiletrigger', profileTrigger);
-        await page.waitForSelector('button[type="submit"]');
-        await page.click('button[type="submit"]');
+        await page.locator('#profiletrigger').fill(profileTrigger);
+        await page.locator('button[type="submit"]').click();
 
         // Assert
         await page.waitForSelector('form.success');
@@ -141,7 +132,8 @@ describe('Popup Tests', () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
-        const popupPage = await openPopup(browser, extensionPath);
+        const popupPage = await openPopup(browser);
+        await popupPage.waitForSelector('label[for="debug"]');
 
         // Act
         await popupPage.click('label[for="debug"]');
@@ -158,7 +150,8 @@ describe('Popup Tests', () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
-        const popupPage = await openPopup(browser, extensionPath);
+        const popupPage = await openPopup(browser);
+        await popupPage.waitForSelector('label[for="trace"]');
 
         // Act
         await popupPage.click('label[for="trace"]');
@@ -175,7 +168,8 @@ describe('Popup Tests', () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
-        const popupPage = await openPopup(browser, extensionPath);
+        const popupPage = await openPopup(browser);
+        await popupPage.waitForSelector('label[for="profile"]');
 
         // Act
         await popupPage.click('label[for="profile"]');
@@ -192,7 +186,7 @@ describe('Popup Tests', () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
-        const popupPage = await openPopup(browser, extensionPath);
+        const popupPage = await openPopup(browser);
 
         // Act
         await popupPage.click('label[for="disable"]');
@@ -207,7 +201,7 @@ describe('Popup Tests', () => {
         // Arrange
         const [page] = await browser.pages();
         await page.goto(config.examplePage);
-        const popupPage = await openPopup(browser, extensionPath);
+        const popupPage = await openPopup(browser);
 
         // Act
         await popupPage.click('#options');
@@ -217,3 +211,4 @@ describe('Popup Tests', () => {
         expect(optionsPage).toBeTruthy();
     });
 });
+

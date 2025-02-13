@@ -1,12 +1,12 @@
 # Xdebug Extension Tests
 
-These tests use Puppeteer to automate interactions with the Xdebug Chrome extension.
+These tests use Puppeteer to automate interactions with the Xdebug extension.
 
 ## Prerequisites
 
 Ensure you have the following prerequisites installed:
 
-* **Chromium:** Needed for Puppeteer to control a browser instance.
+* **Compatible Browser:** Needed for Puppeteer to control a browser instance (uses chromium by defualt)
 * **Node.js and npm:** Required for running the test suite and managing dependencies.
 
 ## Installation
@@ -67,24 +67,14 @@ Ran all test suites matching /./i.
 
 ### Browser was not found at the configured executablePath
 
-Double-check that Chromium is installed correctly and is at the exptected path by running the command:
+Please verify that a compatible browser (like Chromium) is installed and accessible. 
+
+The expected default location is `/snap/bin/chromium`.
+
+If your browser is installed elsewhere, set the `BROWSER_PATH` environment variable before running the tests. For example: 
 
 ```bash
-which chromium-browser
-```
-
-The `config.chromiumPath` proptery in `extension.test.js` should match the output of this, e.g.
-
-```js
-const config = {
-    chromiumPath: process.env.CHROMIUM_PATH || '/usr/bin/chromium-browser' <- should match 
-    ...
-```
-
-Alternatively you can pass the `CHROMIUM_PATH` at runtime using the command:
-
-```bash
-CHROMIUM_PATH=/path/to/your/chromium-browser npm test
+BROWSER_PATH=/path/to/your/browser npm test
 ```
 
 ### Failed to launch the browser process! Missing X server or $DISPLAY
