@@ -37,7 +37,7 @@ const updateIcon = (status, tabId) => {
 };
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-    if (changeInfo?.status !== 'complete' || !tab?.url?.startsWith('http')) {
+    if ((changeInfo?.status || tab?.status) !== 'complete') {
         return;
     }
 
