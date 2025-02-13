@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer-core');
 
 /**
- * Launches the Chromium browser with the extension loaded.
+ * Launches the browser with the extension loaded.
  * @param {object} config The configuration object.
  * @returns {Promise<puppeteer.Browser>} A Promise that resolves with the launched Puppeteer Browser instance.
  * @throws {Error} If the browser fails to launch.
@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer-core');
 async function launchBrowser(config) {
     try {
         return await puppeteer.launch({
-            executablePath: config.chromiumPath,
+            executablePath: config.browserPath,
             headless: false,
             slowMo: config.slowMo,
             devtools: config.devtools,
@@ -51,15 +51,23 @@ async function getExtensionPath(browser, config) {
 }
 
 /**
- * Opens the extension's popup in a new page.
- * @param {puppeteer.Browser} browser The browser instance.
- * @param {string} extensionPath The extension path.
- * @returns {Promise<puppeteer.Page>} A Promise that resolves with the Puppeteer Page object representing the popup.
+ * Opens the extension's popup.
+ * *
+ * @param {puppeteer.Browser} browser The Puppeteer Browser instance.
+ * @returns {Promise<puppeteer.Page>} A Promise that resolves with the Puppeteer Page object representing the opened popup.
+ * @throws {Error} If the service worker or popup page are not found within a reasonable timeout.
  */
-async function openPopup(browser, extensionPath) {
-    const popupPage = await browser.newPage();
-    await popupPage.goto(`${extensionPath}/popup.html`);
-    return popupPage;
+async function openPopup(browser) {
+    const workerTarget = await browser.waitForTarget(
+        target =>
+            target.type() === 'service_worker' &&
+            target.url().endsWith('service_worker.js'),
+    );
+
+    const worker = await workerTarget.worker();
+    await worker.evaluate('chrome.action.openPopup();');
+    const popupTarget = await browser.waitForTarget(target => target.type() === 'page' && target.url().endsWith('popup.html'));
+    return popupTarget.asPage();
 }
 
 /**
@@ -78,7 +86,7 @@ function findCookie(cookies, cookieName) {
  * @returns {Promise<void>} A Promise that resolves when a cookie is detected.
  */
 async function waitForCookieToExist(page) {
-    return await page.waitForFunction(async () => { return document.cookie !== ''; });
+    return await page.waitForFunction(async () => document.cookie);
 }
 
 /**
@@ -87,7 +95,7 @@ async function waitForCookieToExist(page) {
  * @returns {Promise<void>} A Promise that resolves when all cookies are cleared.
  */
 async function waitForCookieToClear(page) {
-    return await page.waitForFunction(async () => { return document.cookie === ''; });
+    return await page.waitForFunction(async () => !document.cookie);
 }
 
 /**
