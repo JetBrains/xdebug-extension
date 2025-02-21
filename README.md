@@ -10,8 +10,11 @@ The motivation for this new extension was that `xdebug-helper` will soon no long
 
 [![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-extension/aoelhdemabeimdhedkidlnbkfhnhgnhm) [![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/) [![Available in Microsoft Edge Addons](img/for-edge.png)](https://microsoftedge.microsoft.com/addons/detail/xdebug-extension/kddfioocjgjmmambaijldfbpiaecmoco)
 
-
 _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc) that allow Chrome extensions, however these are untested and are not offically supported by this project._
+
+> [!NOTE]
+> This extension was originally developed by [@FraserChapman](https://github.com/FraserChapman), who continues to maintain it in collaboration with [@JetBrains](https://github.com/JetBrains).  
+> We appreciate Fraser’s work in making debugging easier for PHP developers!
 
 ## Features
 
