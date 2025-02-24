@@ -6,8 +6,7 @@
     "author": "fraser.chapman@gmail.com",
     "permissions": [
         "storage",
-        "activeTab",
-        "cookies"
+        "activeTab"
     ],
     "icons": {
         "16": "img/disable16.png",
