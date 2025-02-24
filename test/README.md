@@ -84,7 +84,7 @@ EXAMPLE_PAGE=https://example.com/ npm test
 ```
 ---
 
-`DEFAULT_KEY` Configures the default IDE key for the Xdebug extension. Defaults to `XDEBUG_ECLIPSE`.
+`DEFAULT_KEY` Configures the default IDE key for the Xdebug extension. Defaults to `PHPSTORM`.
 ```bash
 DEFAULT_KEY=MY_CUSTOM_KEY npm test 
 ```

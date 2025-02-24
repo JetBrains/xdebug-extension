@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     chrome.storage.local.get({
-        xdebugIdeKey: 'XDEBUG_ECLIPSE',
+        xdebugIdeKey: 'PHPSTORM',
         xdebugTraceTrigger: null,
         xdebugProfileTrigger: null,
     }, (settings) => {

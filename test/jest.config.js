@@ -8,7 +8,7 @@ module.exports = {
             extensionDir: '../src',
             browserPath: process.env.BROWSER_PATH || '/snap/bin/chromium',
             examplePage: process.env.EXAMPLE_PAGE || 'http://localhost:8765',
-            defaultKey: process.env.DEFAULT_KEY || 'XDEBUG_ECLIPSE',
+            defaultKey: process.env.DEFAULT_KEY || 'PHPSTORM',
             timeout: process.env.TIMEOUT || 3000,
             slowMo: process.env.SLOW_MO || 0,
             devtools: process.env.DEV_TOOLS || false,

@@ -1,4 +1,4 @@
-const DEFAULT_IDE_KEY = 'XDEBUG_ECLIPSE';
+const DEFAULT_IDE_KEY = 'PHPSTORM';
 
 const getCookie = name =>
     document.cookie.split(';').find(cookie => cookie.trim().startsWith(`${name}=`))?.split('=')[1];

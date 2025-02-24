@@ -1,4 +1,4 @@
-const DEFAULT_IDE_KEY = 'XDEBUG_ECLIPSE';
+const DEFAULT_IDE_KEY = 'PHPSTORM';
 
 const getSettings = async () => {
     return new Promise((resolve, reject) => {
