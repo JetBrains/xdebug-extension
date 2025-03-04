@@ -13,13 +13,13 @@ The motivation for this new extension was that `xdebug-helper` will soon no long
 _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc) that allow Chrome extensions, however these are untested and are not offically supported by this project._
 
 > [!NOTE]
-> This extension was originally developed by [@FraserChapman](https://github.com/FraserChapman), who continues to maintain it in collaboration with [@JetBrains](https://github.com/JetBrains).  
+> This extension was originally developed by [@FraserChapman](https://github.com/FraserChapman), who continues to maintain it in collaboration with [@JetBrains](https://github.com/JetBrains).
 > We appreciate Fraser’s work in making debugging easier for PHP developers!
 
 ## Features
 
 - Set custom IDE key, trace trigger, and profile triggers
-  
+
 ![Xdebug Extension options](img/xdebug-extension-options.png)
 
 - Toggle debugging, profiling, and tracing
@@ -49,8 +49,8 @@ From Mozilla Addons
 From source
 
 1) Clone the `xdebug-extension` repository
-2) Run the `build.sh` file 
-3) Click on "This Firefox"
+2) Run the the build file: `. build.sh`
+3) Navigate to `about:debugging#/runtime/this-firefox`
 4) Choose "Load Temporary Add-on…"
 5) Select the `xdebug-extension@[version].xpi` file in the `xdebug-extension/build` directory.
 
@@ -60,8 +60,8 @@ Prebuilt
 2) Click on "This Firefox"
 3) Choose "Load Temporary Add-on…"
 4) Select the `xdebug-extension@[version].xpi` file you downloaded in step one.
-   
-### Edge 
+
+### Edge
 
 [![Available in Microsoft Edge Addons](img/for-edge.png)](https://microsoftedge.microsoft.com/addons/detail/xdebug-extension/kddfioocjgjmmambaijldfbpiaecmoco)
 
@@ -72,7 +72,7 @@ From source
 3) Turn on "Developer Mode"
 4) Choose "Load unpacked"
 5) select the `src` directory inside the `xdebug-extension` directory you downloaded in step one.
-   
+
 ## Usage
 
 Once installed, you can:
@@ -92,7 +92,7 @@ Once installed, you can:
 
 ![chrome-extensions-shortcuts](img/chrome-extensions-shortcuts.png)
 
-#### FireFox 
+#### FireFox
 
 1) Click the menu button
 2) Click Add-ons and themes
@@ -102,7 +102,7 @@ Once installed, you can:
 
 ![firefox-extensions/shortcuts](img/firefox-extensions-shortcuts.png)
 
-#### Edge 
+#### Edge
 
 1) shortcuts can be configured via `edge://extensions/shortcuts`
 
@@ -123,4 +123,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ![trace](src/img/trace16.png) [rukanicon](https://www.freepik.com/icon/search_4529794#fromView=search&page=2&position=4&uuid=b4d99857-87e6-4c31-8244-0681fc37c27c)
 
 ![profile](src/img/profile16.png) [UIcons](https://www.freepik.com/icon/alarm-clock_3914623#fromView=search&page=2&position=53&uuid=2ee3fb72-66da-4ded-b901-b35f13d97f02)
-
