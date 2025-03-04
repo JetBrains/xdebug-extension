@@ -17,7 +17,7 @@ Ensure you have the following prerequisites installed:
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install nodejs  
+sudo apt install nodejs
 sudo snap install chromium
 ```
 
@@ -46,7 +46,7 @@ Upon successful execution, you should see output similar to this:
   Options Tests
     ✓ Should render options correctly (552 ms)
     ✓ Should render default shortcuts correctly (621 ms)
-    ✓ Should set IDE Key correctly and save (559 ms)
+    ✓ Should set Debug Trigger correctly and save (559 ms)
     ✓ Should set Trace Trigger correctly and save (561 ms)
     ✓ Should set Profile Trigger correctly and save (552 ms)
     ✓ Should clear all text inputs when the clear button is clicked (489 ms)
@@ -74,7 +74,7 @@ You can customize the test execution using the following environment variables.
 
 `BROWSER_PATH` Specifies the path to the browser executable. Defaults to `/snap/bin/chromium`.
 ```bash
-BROWSER_PATH=/usr/bin/google-chrome npm test 
+BROWSER_PATH=/usr/bin/google-chrome npm test
 ```
 ---
 
@@ -86,7 +86,7 @@ EXAMPLE_PAGE=https://example.com/ npm test
 
 `DEFAULT_KEY` Configures the default IDE key for the Xdebug extension. Defaults to `PHPSTORM`.
 ```bash
-DEFAULT_KEY=MY_CUSTOM_KEY npm test 
+DEFAULT_KEY=MY_CUSTOM_KEY npm test
 ```
 ---
 
@@ -118,11 +118,11 @@ DEV_TOOLS=true npm test
 
 ### Browser was not found at the configured executablePath
 
-Please verify that a compatible browser (like Chromium) is installed and accessible. 
+Please verify that a compatible browser (like Chromium) is installed and accessible.
 
 The expected default location is `/snap/bin/chromium`.
 
-If your browser is installed elsewhere, set the `BROWSER_PATH` environment variable before running the tests. For example: 
+If your browser is installed elsewhere, set the `BROWSER_PATH` environment variable before running the tests. For example:
 
 ```bash
 BROWSER_PATH=/path/to/your/browser npm test
@@ -130,7 +130,7 @@ BROWSER_PATH=/path/to/your/browser npm test
 
 ### Failed to launch the browser process! Missing X server or $DISPLAY
 
-If you are using a non-GUI distribution, such as in WSL/WSL2, you will need to set the `DISPLAY` environment variable. You can do this using the command: 
+If you are using a non-GUI distribution, such as in WSL/WSL2, you will need to set the `DISPLAY` environment variable. You can do this using the command:
 
 ```bash
 export DISPLAY=:0
