@@ -12,7 +12,7 @@ async function getBrowser() {
         slowMo: config.slowMo,
         devtools: config.devtools,
         args: [
-            '--window-name=Xdebug Extension Tests',
+            '--window-name=Xdebug Helper Tests',
             '--window-size=800,600',
             '--no-first-run',
             `--disable-extensions-except=${config.extensionDir}`,
