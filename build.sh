@@ -47,7 +47,7 @@ echo "Copied LICENSE to [$TMP_ZIP_DIR, $TMP_XPI_DIR]"
 
 
 # Firefox (xpi) manifest modifications
-if ! jq --indent 4 '. + {browser_specific_settings: {gecko: {id: "xdebug-extension@fraser"}}}' "$TMP_XPI_DIR/manifest.json" > "$TMP_XPI_DIR/manifest.json.tmp"; then
+if ! jq --indent 4 '. + {browser_specific_settings: {gecko: {id: "xdebug-helper@JetBrains"}}}' "$TMP_XPI_DIR/manifest.json" > "$TMP_XPI_DIR/manifest.json.tmp"; then
     echo "Failed to add browser-specific settings to Firefox manifest"
     exit 1
 fi
@@ -63,7 +63,7 @@ fi
 mv "$TMP_XPI_DIR/manifest.json.tmp" "$TMP_XPI_DIR/manifest.json"
 echo "Updated Firefox background script in manifest"
 
-( cd "$TMP_ZIP_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-extension@$VERSION.zip" * ) || { echo "Failed to create zip archive"; exit 1; }
-( cd "$TMP_XPI_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-extension@$VERSION.xpi" * ) || { echo "Failed to create xpi archive"; exit 1; }
+( cd "$TMP_ZIP_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-helper@$VERSION.zip" * ) || { echo "Failed to create zip archive"; exit 1; }
+( cd "$TMP_XPI_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-helper@$VERSION.xpi" * ) || { echo "Failed to create xpi archive"; exit 1; }
 
-echo "Build $VERSION complete: [$BUILD_DIR/xdebug-extension@$VERSION.xpi, $BUILD_DIR/xdebug-extension@$VERSION.zip]"
+echo "Build $VERSION complete: [$BUILD_DIR/xdebug-helper@$VERSION.xpi, $BUILD_DIR/xdebug-helper@$VERSION.zip]"

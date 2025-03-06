@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "xdebug extension",
+    "name": "Xdebug Helper by JetBrains",
     "version": "1.0.2",
     "description": "A modern, dependency-free, extension for Xdebug",
     "author": "fraser.chapman@gmail.com",

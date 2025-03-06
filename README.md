@@ -1,4 +1,4 @@
-# ![Xdebug Extension use](src/img/debug32.png) Xdebug Extension
+# ![Xdebug Helper use](src/img/debug32.png) Xdebug Helper by JetBrains
 
 A modern, dependency-free, cross-browser extension for Xdebug.
 
@@ -20,11 +20,11 @@ _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc
 
 - Set custom IDE key, trace trigger, and profile triggers
 
-![Xdebug Extension options](img/xdebug-extension-options.png)
+![Xdebug Helper options](img/xdebug-extension-options.png)
 
 - Toggle debugging, profiling, and tracing
 
-![Xdebug Extension popup](img/xdebug-extension-popup.png)
+![Xdebug Helper popup](img/xdebug-extension-popup.png)
 
 ## Installation
 
@@ -49,14 +49,14 @@ From Mozilla Addons
 From source
 
 1) Clone the `xdebug-extension` repository
-2) Run the the build file: `. build.sh`
+2) Run the build file: `. build.sh`
 3) Navigate to `about:debugging#/runtime/this-firefox`
 4) Choose "Load Temporary Add-on…"
 5) Select the `xdebug-extension@[version].xpi` file in the `xdebug-extension/build` directory.
 
 Prebuilt
 
-1) Download the latest xpi file from [releases](https://github.com/FraserChapman/xdebug-extension/releases) e.g `xdebug-extension@1.0.0.xpi`
+1) Download the latest xpi file from [releases](https://github.com/JetBrains/xdebug-extension/releases) e.g `xdebug-extension@1.0.0.xpi`
 2) Click on "This Firefox"
 3) Choose "Load Temporary Add-on…"
 4) Select the `xdebug-extension@[version].xpi` file you downloaded in step one.
