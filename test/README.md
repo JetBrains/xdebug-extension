@@ -84,9 +84,9 @@ EXAMPLE_PAGE=https://example.com/ npm test
 ```
 ---
 
-`DEFAULT_KEY` Configures the default IDE key for the Xdebug extension. Defaults to `PHPSTORM`.
+`DEFAULT_TRIGGER_VALUE` Configures the default trigger value key for the Xdebug extension. Defaults to `YOUR-NAME`.
 ```bash
-DEFAULT_KEY=MY_CUSTOM_KEY npm test
+DEFAULT_TRIGGER_VALUE=MY_CUSTOM_KEY npm test
 ```
 ---
 
