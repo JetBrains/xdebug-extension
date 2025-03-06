@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const optionsForm = document.querySelector('form');
-    const ideKeyInput = document.getElementById('idekey');
+    const debugTriggerInput = document.getElementById('debugtrigger');
     const traceTriggerInput = document.getElementById('tracetrigger');
     const profileTriggerInput = document.getElementById('profiletrigger');
     const helpDiv = document.getElementById('help');
 
     document.querySelector('button[type="reset"]').addEventListener('click', e => {
         e.preventDefault();
-        ideKeyInput.value = '';
+        debugTriggerInput.value = '';
         traceTriggerInput.value = '';
         profileTriggerInput.value = '';
     });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('button[type="submit"]').addEventListener('click', e => {
         e.preventDefault();
         chrome.storage.local.set({
-            xdebugIdeKey: ideKeyInput.value,
+            xdebugDebugTrigger: debugTriggerInput.value,
             xdebugTraceTrigger: traceTriggerInput.value,
             xdebugProfileTrigger: profileTriggerInput.value
         });
@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     chrome.storage.local.get({
-        xdebugIdeKey: 'PHPSTORM',
+        xdebugDebugTrigger: 'YOUR-NAME',
         xdebugTraceTrigger: null,
         xdebugProfileTrigger: null,
     }, (settings) => {
-        ideKeyInput.value = settings.xdebugIdeKey;
+        debugTriggerInput.value = settings.xdebugDebugTrigger;
         traceTriggerInput.value = settings.xdebugTraceTrigger;
         profileTriggerInput.value = settings.xdebugProfileTrigger;
     });

@@ -1,11 +1,11 @@
-const DEFAULT_IDE_KEY = 'PHPSTORM';
+const DEFAULT_TRIGGER_VALUE = 'YOUR-NAME';
 
 const getSettings = async () => {
     return new Promise((resolve, reject) => {
         chrome.storage.local.get({
-            xdebugIdeKey: DEFAULT_IDE_KEY,
-            xdebugTraceTrigger: DEFAULT_IDE_KEY,
-            xdebugProfileTrigger: DEFAULT_IDE_KEY
+            xdebugDebugTrigger: DEFAULT_TRIGGER_VALUE,
+            xdebugTraceTrigger: DEFAULT_TRIGGER_VALUE,
+            xdebugProfileTrigger: DEFAULT_TRIGGER_VALUE
         }, (settings) => {
             if (chrome.runtime.lastError) {
                 return reject(new Error(chrome.runtime.lastError));
@@ -42,10 +42,10 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     }
 
     try {
-        const { xdebugIdeKey, xdebugTraceTrigger, xdebugProfileTrigger } = await getSettings();
+        const { xdebugDebugTrigger, xdebugTraceTrigger, xdebugProfileTrigger } = await getSettings();
         const response = await chrome.tabs.sendMessage(tabId, {
             cmd: 'getStatus',
-            idekey: xdebugIdeKey,
+            debugTrigger: xdebugDebugTrigger,
             traceTrigger: xdebugTraceTrigger,
             profileTrigger: xdebugProfileTrigger
         });
@@ -66,7 +66,7 @@ chrome.commands.onCommand.addListener(async (command) => {
         const settings = await getSettings();
         const response = await chrome.tabs.sendMessage(tab.id, {
             cmd: 'getStatus',
-            idekey: settings.xdebugIdeKey,
+            debugTrigger: settings.xdebugDebugTrigger,
             traceTrigger: settings.xdebugTraceTrigger,
             profileTrigger: settings.xdebugProfileTrigger
         });
@@ -90,7 +90,7 @@ chrome.commands.onCommand.addListener(async (command) => {
         const setResponse = await chrome.tabs.sendMessage(tab.id, {
             cmd: 'setStatus',
             status: newState,
-            idekey: settings.xdebugIdeKey,
+            debugTrigger: settings.xdebugDebugTrigger,
             traceTrigger: settings.xdebugTraceTrigger,
             profileTrigger: settings.xdebugProfileTrigger
         });
@@ -115,7 +115,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         const response = await chrome.tabs.sendMessage(tab.id, {
             cmd: 'setStatus',
             status: request.status,
-            idekey: settings.xdebugIdeKey,
+            debugTrigger: settings.xdebugDebugTrigger,
             traceTrigger: settings.xdebugTraceTrigger,
             profileTrigger: settings.xdebugProfileTrigger
         });

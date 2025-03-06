@@ -10,7 +10,7 @@ describe('Options Tests', () => {
         const options = await openOptions();
 
         // Assert
-        await expect(options.$('#idekey')).resolves.not.toBeNull(); // IDE Key
+        await expect(options.$('#debugtrigger')).resolves.not.toBeNull(); // Debug Trigger
         await expect(options.$('#tracetrigger')).resolves.not.toBeNull(); // Trace Trigger
         await expect(options.$('#profiletrigger')).resolves.not.toBeNull(); // Profile Trigger
         await expect(options.$('button[type="reset"]')).resolves.not.toBeNull(); // Clear
@@ -45,18 +45,18 @@ describe('Options Tests', () => {
     });
 
 
-    test('Should set IDE Key correctly and save', async () => {
+    test('Should set Debug Trigger correctly and save', async () => {
         // Arrange
         const options = await openOptions();
 
         // Act
-        const key = 'IDE_KEY_TEST';
-        await options.locator('#idekey').fill(key);
+        const key = 'DEBUG_TRIGGER_TEST';
+        await options.locator('#debugtrigger').fill(key);
         await options.locator('button[type="submit"]').click();
 
         // Assert
         await options.waitForSelector('form.success');
-        const storedValue = await waitForStoredValue(options, 'xdebugIdeKey');
+        const storedValue = await waitForStoredValue(options, 'xdebugDebugTrigger');
         expect(storedValue).toBe(key);
         await options.close();
     });
@@ -99,13 +99,13 @@ describe('Options Tests', () => {
         const options = await openOptions();
 
         // Act
-        await options.locator('#idekey').fill('foo');
+        await options.locator('#debugtrigger').fill('foo');
         await options.locator('#tracetrigger').fill('bar');
         await options.locator('#profiletrigger').fill('bat');
         await options.click('button[type="reset"]');
 
         // Assert
-        await expect(options.$eval('#idekey', el => el.value)).resolves.toBe('');
+        await expect(options.$eval('#debugtrigger', el => el.value)).resolves.toBe('');
         await expect(options.$eval('#tracetrigger', el => el.value)).resolves.toBe('');
         await expect(options.$eval('#profiletrigger', el => el.value)).resolves.toBe('');
         await options.close();
