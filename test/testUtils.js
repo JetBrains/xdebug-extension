@@ -119,11 +119,9 @@ async function waitForStoredValue(page, key) {
 async function getDomainForCookie(page) {
     const hostname = await page.evaluate(() => window.location.hostname);
     const parts = hostname.split(".");
-    if (parts.length <= 1) {
-        return hostname;
-    }
-
-    return "." + parts.slice(-2).join(".");
+    return parts.length <= 1 ? 
+        hostname :
+        parts.slice(-2).join(".");
 }
 
 module.exports = {
