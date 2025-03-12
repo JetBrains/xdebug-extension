@@ -4,17 +4,23 @@
   --light-label: #555;
   --light-form-bg: white;
   --light-link: #747474;
+  --light-save-button: #007bff;
+  --light-save-button-hover: #0056b3;
+  --light-clear-button: #888887;
+  --light-clear-button-hover: #5f5f5f;
+  --light-form-success: #9fff8a80;
 
-  --dark-bg: #2b2b2b;
+  --dark-bg: #1e1e1e;
   --dark-text: #f4f7fa;
   --dark-label: #e0e0e0;
-  --dark-form-bg: #555;
+  --dark-form-bg: #333;
   --dark-link: #e0e0e0;
+  --dark-save-button: #4a90e2;
+  --dark-save-button-hover: #357abd;
+  --dark-clear-button: #666;
+  --dark-clear-button-hover: #505050;
+  --dark-form-success: #3daf3d80;
 
-  --primary-button: #007bff;
-  --primary-button-hover: #0056b3;
-  --secondary-button: #888887;
-  --secondary-button-hover: #5f5f5f;
   --input-border: #ccc;
   --input-focus-border: #007bff;
   --kbd-bg: #eee;
@@ -32,6 +38,8 @@ body {
   height: 100vh;
   gap: 1em;
   transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--light-bg);
+  color: var(--light-text);
 }
 
 form {
@@ -41,11 +49,12 @@ form {
   width: 100%;
   max-width: 400px;
   transition: background-color 0.3s ease;
+  background: var(--light-form-bg);
 }
 
 form.success {
-  background-color: rgba(159, 255, 138, 0.5);
   transition: background-color 0.3s ease;
+  background: var(--light-form-success);
 }
 
 fieldset {
@@ -55,12 +64,9 @@ fieldset {
   border: 0;
 }
 
-legend {
-  text-align: center;
-}
-
 label {
   transition: color 0.3s ease;
+  color: var(--light-label);
 }
 
 input[type="text"] {
@@ -72,27 +78,11 @@ input[type="text"] {
 
 button {
   padding: 10px;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-button[type="submit"] {
-  background-color: var(--primary-button);
-}
-
-button[type="submit"]:hover {
-  background-color: var(--primary-button-hover);
-}
-
-button[type="reset"] {
-  background-color: var(--secondary-button);
-}
-
-button[type="reset"]:hover {
-  background-color: var(--secondary-button-hover);
+  color: white;
 }
 
 input[type="text"]:focus {
@@ -106,7 +96,7 @@ kbd {
   border: 1px solid var(--kbd-border);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
     0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-  color: #333;
+  color: var(--light-text);
   display: inline-block;
   font-weight: 700;
   line-height: 1;
@@ -119,6 +109,7 @@ a {
   align-items: center;
   text-decoration: none;
   transition: color 0.3s ease;
+  color: var(--light-link);
 }
 
 a img {
@@ -133,29 +124,23 @@ a img {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--light-form-bg);
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--light-bg);
-    color: var(--light-text);
-  }
+button[type="submit"] {
+  background-color: var(--light-save-button);
+}
 
-  form {
-    background: var(--light-form-bg);
-  }
+button[type="submit"]:hover {
+  background-color: var(--light-save-button-hover);
+}
 
-  label {
-    color: var(--light-label);
-  }
+button[type="reset"] {
+  background-color: var(--light-clear-button);
+}
 
-  #help {
-    background: var(--light-form-bg);
-  }
-
-  a {
-    color: var(--light-link);
-  }
+button[type="reset"]:hover {
+  background-color: var(--light-clear-button-hover);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -168,8 +153,28 @@ a img {
     background: var(--dark-form-bg);
   }
 
+  form.success {
+    background: var(--dark-form-success);
+  }
+
   label {
     color: var(--dark-label);
+  }
+
+  button[type="submit"] {
+    background-color: var(--dark-save-button);
+  }
+
+  button[type="submit"]:hover {
+    background-color: var(--dark-save-button-hover);
+  }
+
+  button[type="reset"] {
+    background-color: var(--dark-clear-button);
+  }
+
+  button[type="reset"]:hover {
+    background-color: var(--dark-clear-button-hover);
   }
 
   #help {

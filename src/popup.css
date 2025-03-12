@@ -5,7 +5,7 @@
   --light-radio-checked-bg: #9cf78c;
   --light-options-color: #8d8d8d;
 
-  --dark-bg: #2b2b2b;
+  --dark-bg: #1e1e1e;
   --dark-text: #e0e0e0;
   --dark-radio-bg: #444;
   --dark-radio-hover-bg: #555;
@@ -17,6 +17,7 @@ body {
   font-family: Arial, sans-serif;
   width: 100px;
   font-size: 0.8em;
+  color: var(--light-text);
 }
 
 form {
@@ -43,16 +44,19 @@ input[type="radio"] {
   margin: 0;
 }
 
-input[type="radio"] + label {
+input[type="radio"]+label {
   transition: background-color 0.3s ease;
+  background-color: var(--light-radio-bg);
 }
 
-input[type="radio"]:hover + label {
+input[type="radio"]:hover+label {
   transition: background-color 0.3s ease;
+  background-color: var(--light-radio-hover-bg);
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
   transition: background-color 0.3s ease;
+  background-color: var(--light-radio-checked-bg);
 }
 
 #options {
@@ -60,28 +64,7 @@ input[type="radio"]:checked + label {
   text-decoration: none;
   text-align: center;
   transition: color 0.3s ease;
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    color: var(--light-text);
-  }
-
-  input[type="radio"] + label {
-    background-color: var(--light-radio-bg);
-  }
-
-  input[type="radio"]:hover + label {
-    background-color: var(--light-radio-hover-bg);
-  }
-
-  input[type="radio"]:checked + label {
-    background-color: var(--light-radio-checked-bg);
-  }
-
-  #options {
-    color: var(--light-options-color);
-  }
+  color: var(--light-options-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,15 +73,15 @@ input[type="radio"]:checked + label {
     color: var(--dark-text);
   }
 
-  input[type="radio"] + label {
+  input[type="radio"]+label {
     background-color: var(--dark-radio-bg);
   }
 
-  input[type="radio"]:hover + label {
+  input[type="radio"]:hover+label {
     background-color: var(--dark-radio-hover-bg);
   }
 
-  input[type="radio"]:checked + label {
+  input[type="radio"]:checked+label {
     background-color: var(--dark-radio-checked-bg);
   }
 
