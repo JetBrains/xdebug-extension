@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug Helper от JetBrains"
+  },
+  "options_title": {
+    "message": "Параметры Xdebug Helper"
+  },
+  "options_debug_trigger": {
+    "message": "Триггер отладки или ключ Xdebug Cloud"
+  },
+  "options_trace_trigger": {
+    "message": "Триггер трассировки"
+  },
+  "options_profile_trigger": {
+    "message": "Триггер профилирования"
+  },
+  "options_clear": {
+    "message": "Очистить"
+  },
+  "options_save": {
+    "message": "Сохранить"
+  },
+  "options_shortcuts": {
+    "message": "Сочетания клавиш"
+  },
+  "options_execute_action": {
+    "message": "Выполнить действие"
+  },
+  "options_toggle_debug": {
+    "message": "Переключить отладку"
+  },
+  "options_toggle_profile": {
+    "message": "Переключить профилирование"
+  },
+  "options_toggle_trace": {
+    "message": "Переключить трассировку"
+  },
+  "popup_title": {
+    "message": "Всплывающее окно Xdebug Helper"
+  },
+  "popup_debug": {
+    "message": "Отладка"
+  },
+  "popup_profile": {
+    "message": "Профилирование"
+  },
+  "popup_trace": {
+    "message": "Трассировка"
+  },
+  "popup_disable": {
+    "message": "Отключить"
+  },
+  "popup_options": {
+    "message": "Параметры"
+  }
+}
