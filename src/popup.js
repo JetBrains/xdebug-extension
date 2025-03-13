@@ -2,6 +2,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const radioButtons = document.querySelectorAll('input[name="state"]');
     const optionsLink = document.querySelector('#options');
 
+    document.querySelectorAll('[data-locale]').forEach(e => {
+        const message = chrome.i18n.getMessage(e.dataset.locale);
+        const lastNode = e.childNodes[e.childNodes.length - 1];
+        if (lastNode.nodeType === Node.TEXT_NODE) {
+            lastNode.textContent = message;
+        } else if (e.childNodes.length === 0){
+            e.innerText = message;
+        }
+    });
+
     try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         if (!tab) {
