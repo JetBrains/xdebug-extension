@@ -4,6 +4,7 @@
     "version": "1.0.3",
     "description": "A modern, dependency-free, extension for Xdebug",
     "author": "fraser.chapman@gmail.com",
+    "default_locale": "en",
     "permissions": [
         "storage",
         "activeTab"
@@ -37,21 +38,21 @@
                 "default": "Alt+C",
                 "mac": "Alt+C"
             },
-            "description": "Toggle debugging"
+            "description": "__MSG_options_toggle_debug__"
         },
         "run-toggle-profile": {
             "suggested_key": {
                 "default": "Alt+V",
                 "mac": "Alt+V"
             },
-            "description": "Toggle profiling"
+            "description": "__MSG_options_toggle_profile__"
         },
         "run-toggle-trace": {
             "suggested_key": {
                 "default": "Alt+B",
                 "mac": "Alt+B"
             },
-            "description": "Toggle tracing"
+            "description": "__MSG_options_toggle_trace__"
         },
         "_execute_action": {
             "suggested_key": {
