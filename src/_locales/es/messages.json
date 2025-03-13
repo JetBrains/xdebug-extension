@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug Helper de JetBrains"
+  },
+  "options_title": {
+    "message": "Opciones de Xdebug Helper"
+  },
+  "options_debug_trigger": {
+    "message": "Desencadenador de Depuración o Clave de Xdebug Cloud"
+  },
+  "options_trace_trigger": {
+    "message": "Desencadenador de Rastreo"
+  },
+  "options_profile_trigger": {
+    "message": "Desencadenador de Perfilado"
+  },
+  "options_clear": {
+    "message": "Limpiar"
+  },
+  "options_save": {
+    "message": "Guardar"
+  },
+  "options_shortcuts": {
+    "message": "Atajos"
+  },
+  "options_execute_action": {
+    "message": "Ejecutar acción"
+  },
+  "options_toggle_debug": {
+    "message": "Alternar depuración"
+  },
+  "options_toggle_profile": {
+    "message": "Alternar perfilado"
+  },
+  "options_toggle_trace": {
+    "message": "Alternar rastreo"
+  },
+  "popup_title": {
+    "message": "Ventana emergente de Xdebug Helper"
+  },
+  "popup_debug": {
+    "message": "Depurar"
+  },
+  "popup_profile": {
+    "message": "Perfilado"
+  },
+  "popup_trace": {
+    "message": "Rastreo"
+  },
+  "popup_disable": {
+    "message": "Desactivar"
+  },
+  "popup_options": {
+    "message": "Opciones"
+  }
+}
