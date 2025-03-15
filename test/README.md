@@ -1,6 +1,6 @@
-# Xdebug Extension Tests
+# Xdebug Helper by JetBrains Tests
 
-These tests use Puppeteer to automate interactions with the Xdebug extension.
+These tests use Puppeteer to automate interactions with the Xdebug Helper.
 By default the browser is run headless and the extension is tested against a local sever on port `8765`.
 
 ## Prerequisites

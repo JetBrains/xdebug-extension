@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileTriggerInput = document.getElementById('profiletrigger');
     const helpDiv = document.getElementById('help');
 
+    document.querySelectorAll('[data-locale]').forEach(e => {
+        e.innerText = chrome.i18n.getMessage(e.dataset.locale)
+    });
+
     document.querySelector('button[type="reset"]').addEventListener('click', e => {
         e.preventDefault();
         debugTriggerInput.value = '';
@@ -43,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        for (const { name, shortcut } of commands) {
+        for (const { name, shortcut , description } of commands) {    
             if (!shortcut) {
                 break;
             }
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            newP.appendChild(document.createTextNode(name.replace(/_|-|run/g, ' ')));
+            newP.appendChild(document.createTextNode(' ' + (description || chrome.i18n.getMessage("options_execute_action"))));
             helpDiv.appendChild(newP);
         }
     });

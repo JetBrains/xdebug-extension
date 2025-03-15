@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug Helper od JetBrains"
+  },
+  "options_title": {
+    "message": "Možnosti Xdebug Helper"
+  },
+  "options_debug_trigger": {
+    "message": "Spouštěč ladění nebo klíč Xdebug Cloud"
+  },
+  "options_trace_trigger": {
+    "message": "Spouštěč trasování"
+  },
+  "options_profile_trigger": {
+    "message": "Spouštěč profilování"
+  },
+  "options_clear": {
+    "message": "Vymazat"
+  },
+  "options_save": {
+    "message": "Uložit"
+  },
+  "options_shortcuts": {
+    "message": "Zkratky"
+  },
+  "options_execute_action": {
+    "message": "Provést akci"
+  },
+  "options_toggle_debug": {
+    "message": "Přepnout ladění"
+  },
+  "options_toggle_profile": {
+    "message": "Přepnout profilování"
+  },
+  "options_toggle_trace": {
+    "message": "Přepnout trasování"
+  },
+  "popup_title": {
+    "message": "Vyskakovací okno Xdebug Helper"
+  },
+  "popup_debug": {
+    "message": "Ladění"
+  },
+  "popup_profile": {
+    "message": "Profilování"
+  },
+  "popup_trace": {
+    "message": "Trasování"
+  },
+  "popup_disable": {
+    "message": "Zakázat"
+  },
+  "popup_options": {
+    "message": "Možnosti"
+  }
+}

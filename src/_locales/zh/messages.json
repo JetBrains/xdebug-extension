@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug 助手 (由 JetBrains 提供)"
+  },
+  "options_title": {
+    "message": "Xdebug 助手选项"
+  },
+  "options_debug_trigger": {
+    "message": "调试触发器或 Xdebug 云密钥"
+  },
+  "options_trace_trigger": {
+    "message": "跟踪触发器"
+  },
+  "options_profile_trigger": {
+    "message": "性能分析触发器"
+  },
+  "options_clear": {
+    "message": "清除"
+  },
+  "options_save": {
+    "message": "保存"
+  },
+  "options_shortcuts": {
+    "message": "快捷键"
+  },
+  "options_execute_action": {
+    "message": "执行操作"
+  },
+  "options_toggle_debug": {
+    "message": "切换调试"
+  },
+  "options_toggle_profile": {
+    "message": "切换性能分析"
+  },
+  "options_toggle_trace": {
+    "message": "切换跟踪"
+  },
+  "popup_title": {
+    "message": "Xdebug 助手弹出窗口"
+  },
+  "popup_debug": {
+    "message": "调试"
+  },
+  "popup_profile": {
+    "message": "性能分析"
+  },
+  "popup_trace": {
+    "message": "跟踪"
+  },
+  "popup_disable": {
+    "message": "禁用"
+  },
+  "popup_options": {
+    "message": "选项"
+  }
+}

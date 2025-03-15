@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug Helper von JetBrains"
+  },
+  "options_title": {
+    "message": "Xdebug Helper-Optionen"
+  },
+  "options_debug_trigger": {
+    "message": "Debug-Trigger oder Xdebug Cloud-Schlüssel"
+  },
+  "options_trace_trigger": {
+    "message": "Trace-Trigger"
+  },
+  "options_profile_trigger": {
+    "message": "Profil-Trigger"
+  },
+  "options_clear": {
+    "message": "Löschen"
+  },
+  "options_save": {
+    "message": "Speichern"
+  },
+  "options_shortcuts": {
+    "message": "Tastenkürzel"
+  },
+  "options_execute_action": {
+    "message": "Aktion ausführen"
+  },
+  "options_toggle_debug": {
+    "message": "Debuggen umschalten"
+  },
+  "options_toggle_profile": {
+    "message": "Profilierung umschalten"
+  },
+  "options_toggle_trace": {
+    "message": "Tracing umschalten"
+  },
+  "popup_title": {
+    "message": "Xdebug Helper-Popup"
+  },
+  "popup_debug": {
+    "message": "Debuggen"
+  },
+  "popup_profile": {
+    "message": "Profilierung"
+  },
+  "popup_trace": {
+    "message": "Tracing"
+  },
+  "popup_disable": {
+    "message": "Deaktivieren"
+  },
+  "popup_options": {
+    "message": "Optionen"
+  }
+}

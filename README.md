@@ -1,4 +1,4 @@
-# ![Xdebug Extension use](src/img/debug32.png) Xdebug Extension
+# ![Xdebug Helper use](src/img/debug32.png) Xdebug Helper by JetBrains
 
 A modern, dependency-free, cross-browser extension for Xdebug.
 
@@ -8,7 +8,7 @@ This work is based on some of the ideas in the legacy [Xdebug helper](https://ch
 
 The motivation for this new extension was that `xdebug-helper` will soon no longer be supported and was limited to Chrome in any case. I had originally intended to update and submit a PR on that extension, but realized that it was probably better to just start from scratch using a more modern approach.
 
-[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-extension/aoelhdemabeimdhedkidlnbkfhnhgnhm) [![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/) [![Available in Microsoft Edge Addons](img/for-edge.png)](https://microsoftedge.microsoft.com/addons/detail/xdebug-extension/kddfioocjgjmmambaijldfbpiaecmoco)
+[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-helper-by-jetbrain/aoelhdemabeimdhedkidlnbkfhnhgnhm) [![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-helper-by-jetbrains) [![Available in Microsoft Edge Addons](img/for-edge.png)](https://microsoftedge.microsoft.com/addons/detail/xdebug-extension/kddfioocjgjmmambaijldfbpiaecmoco)
 
 _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc) that allow Chrome extensions, however these are untested and are not offically supported by this project._
 
@@ -20,17 +20,17 @@ _* It may also work on other Chromium based browsers (Opera, Vivaldi, Brave, etc
 
 - Set custom IDE key, trace trigger, and profile triggers
 
-![Xdebug Extension options](img/xdebug-extension-options.png)
+![Xdebug Helper options](img/xdebug-extension-options.png)
 
 - Toggle debugging, profiling, and tracing
 
-![Xdebug Extension popup](img/xdebug-extension-popup.png)
+![Xdebug Helper popup](img/xdebug-extension-popup.png)
 
 ## Installation
 
 ### Chrome
 
-[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-extension/aoelhdemabeimdhedkidlnbkfhnhgnhm)
+[![Available in Chrome Web Store](img/for-chrome.png)](https://chromewebstore.google.com/detail/xdebug-helper-by-jetbrain/aoelhdemabeimdhedkidlnbkfhnhgnhm)
 
 From source
 
@@ -44,19 +44,19 @@ From source
 
 From Mozilla Addons
 
-[![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-extension/)
+[![Available in the Mozilla Addons](img/for-firefox.png)](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-helper-by-jetbrains)
 
 From source
 
 1) Clone the `xdebug-extension` repository
-2) Run the the build file: `. build.sh`
+2) Run the build file: `. build.sh`
 3) Navigate to `about:debugging#/runtime/this-firefox`
 4) Choose "Load Temporary Add-on…"
 5) Select the `xdebug-extension@[version].xpi` file in the `xdebug-extension/build` directory.
 
 Prebuilt
 
-1) Download the latest xpi file from [releases](https://github.com/FraserChapman/xdebug-extension/releases) e.g `xdebug-extension@1.0.0.xpi`
+1) Download the latest xpi file from [releases](https://github.com/JetBrains/xdebug-extension/releases) e.g `xdebug-extension@1.0.0.xpi`
 2) Click on "This Firefox"
 3) Choose "Load Temporary Add-on…"
 4) Select the `xdebug-extension@[version].xpi` file you downloaded in step one.

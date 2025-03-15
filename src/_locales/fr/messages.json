@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Xdebug Helper par JetBrains"
+  },
+  "options_title": {
+    "message": "Options de Xdebug Helper"
+  },
+  "options_debug_trigger": {
+    "message": "Déclencheur de débogage ou clé Xdebug Cloud"
+  },
+  "options_trace_trigger": {
+    "message": "Déclencheur de traçage"
+  },
+  "options_profile_trigger": {
+    "message": "Déclencheur de profilage"
+  },
+  "options_clear": {
+    "message": "Effacer"
+  },
+  "options_save": {
+    "message": "Enregistrer"
+  },
+  "options_shortcuts": {
+    "message": "Raccourcis"
+  },
+  "options_execute_action": {
+    "message": "Exécuter l'action"
+  },
+  "options_toggle_debug": {
+    "message": "Activer/désactiver le débogage"
+  },
+  "options_toggle_profile": {
+    "message": "Activer/désactiver le profilage"
+  },
+  "options_toggle_trace": {
+    "message": "Activer/désactiver le traçage"
+  },
+  "popup_title": {
+    "message": "Fenêtre contextuelle de Xdebug Helper"
+  },
+  "popup_debug": {
+    "message": "Déboguer"
+  },
+  "popup_profile": {
+    "message": "Profilage"
+  },
+  "popup_trace": {
+    "message": "Traçage"
+  },
+  "popup_disable": {
+    "message": "Désactiver"
+  },
+  "popup_options": {
+    "message": "Options"
+  }
+}
