@@ -14,8 +14,13 @@
         "32": "img/disable32.png",
         "128": "img/disable128.png"
     },
-    "action": {
-        "default_popup": "popup.html"
+    "page_action": {
+        "default_icon": "img/disable16.png",
+        "default_popup": "popup.html",
+        "show_matches": [
+                "http://*/*",
+                "https://*/*"
+            ]
     },
     "options_page": "options.html",
     "content_scripts": [
