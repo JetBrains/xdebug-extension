@@ -8,11 +8,9 @@ const setCookie = (name, value, days = 365) =>
 
 const getDomainForCookie = () => {
   const parts = window.location.hostname.split(".");
-  if (parts.length <= 1) {
-    return window.location.hostname;
-  }
-
-  return "." + parts.slice(-2).join(".");
+  return parts.length <= 1 ? 
+    window.location.hostname:
+    parts.slice(-2).join(".");
 };
 
 const getStatusMap = (settings) => {
