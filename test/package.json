@@ -1,6 +1,6 @@
 {
-    "name": "xdebug-extension-test",
-    "version": "1.0.1",
+    "name": "xdebug-helper-test",
+    "version": "1.0.3",
     "scripts": {
         "test": "jest",
         "watch": "jest --watch",
