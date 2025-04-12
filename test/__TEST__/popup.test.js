@@ -25,7 +25,7 @@ describe('Popup Tests', () => {
         await popup.locator('label[for="debug"]').click();
 
         // Assert
-        const x = await page.waitForFunction(() => document.cookie);
+        await page.waitForFunction(() => document.cookie);
         const cookies = await global.browser.cookies();
         const xdebugSessionCookie = cookies.find(cookie => cookie.name === 'XDEBUG_SESSION');
         expect(cookies.length).toBe(1);
