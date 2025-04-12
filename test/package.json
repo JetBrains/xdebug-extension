@@ -5,7 +5,8 @@
         "test": "jest",
         "watch": "jest --watch",
         "test-options": "jest -t 'Options Tests'",
-        "test-popup": "jest -t 'Popup Tests'"
+        "test-popup": "jest -t 'Popup Tests'",
+        "test-combined": "jest -t 'Combined Tests'"
     },
     "dependencies": {
         "jest": "^29.7.0",
