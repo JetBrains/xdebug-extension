@@ -1,6 +1,7 @@
 const {
     openPopup,
     openExamplePage,
+    getDomainForCookie
 } = require('../testUtils.js');
 
 describe('Popup Tests', () => {
@@ -27,9 +28,11 @@ describe('Popup Tests', () => {
         // Assert
         await page.waitForFunction(() => document.cookie);
         const cookies = await global.browser.cookies();
-        const xdebugSessionCookie = cookies.find(cookie => cookie.name === 'XDEBUG_SESSION');
+        const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_SESSION');
+        const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(xdebugSessionCookie.value).toBe(config.defaultKey);
+        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
 
@@ -44,9 +47,11 @@ describe('Popup Tests', () => {
         // Assert
         await page.waitForFunction(() => document.cookie);
         const cookies = await global.browser.cookies();
-        const xdebugTraceCookie = cookies.find(cookie => cookie.name === 'XDEBUG_TRACE');
+        const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_TRACE');
+        const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(xdebugTraceCookie.value).toBe(config.defaultKey);
+        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
 
@@ -61,9 +66,11 @@ describe('Popup Tests', () => {
         // Assert
         await page.waitForFunction(() => document.cookie);
         const cookies = await global.browser.cookies();
-        const xdebugProfileCookie = cookies.find(cookie => cookie.name === 'XDEBUG_PROFILE');
+        const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_PROFILE');
+        const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(xdebugProfileCookie.value).toBe(config.defaultKey);
+        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
 

@@ -1,49 +1,91 @@
+:root {
+  --light-text: #2b2b2b;
+  --light-radio-bg: #ccc;
+  --light-radio-hover-bg: #ececec;
+  --light-radio-checked-bg: #9cf78c;
+  --light-options-color: #8d8d8d;
+
+  --dark-bg: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-radio-bg: #444;
+  --dark-radio-hover-bg: #555;
+  --dark-radio-checked-bg: #4caf50;
+  --dark-options-color: #a0a0a0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    width: 100px;
-    font-size: 0.8em;
-    color: #2b2b2b;
+  font-family: Arial, sans-serif;
+  width: 100px;
+  font-size: 0.8em;
+  color: var(--light-text);
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    width: 100px;
-    gap: 0.2em;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  gap: 0.2em;
 }
 
 form label {
-    display: flex;
-    align-items: center;
-    padding: 0.5em;
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
 }
 
 form label img {
-    margin: 0 0.5em 0 0.5em;
+  margin: 0 0.5em 0 0.5em;
 }
 
 input[type="radio"] {
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    margin: 0;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  margin: 0;
 }
 
 input[type="radio"]+label {
-    background-color: #ccc;
+  transition: background-color 0.3s ease;
+  background-color: var(--light-radio-bg);
 }
 
 input[type="radio"]:hover+label {
-    background-color: #ececec;
+  transition: background-color 0.3s ease;
+  background-color: var(--light-radio-hover-bg);
 }
 
 input[type="radio"]:checked+label {
-    background-color: #9cf78c;
+  transition: background-color 0.3s ease;
+  background-color: var(--light-radio-checked-bg);
 }
 
 #options {
-    margin-top: 0.5em;
-    color: #8d8d8d;
-    text-decoration: none;
-    text-align: center;
+  margin-top: 0.5em;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.3s ease;
+  color: var(--light-options-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+
+  input[type="radio"]+label {
+    background-color: var(--dark-radio-bg);
+  }
+
+  input[type="radio"]:hover+label {
+    background-color: var(--dark-radio-hover-bg);
+  }
+
+  input[type="radio"]:checked+label {
+    background-color: var(--dark-radio-checked-bg);
+  }
+
+  #options {
+    color: var(--dark-options-color);
+  }
 }

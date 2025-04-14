@@ -111,11 +111,25 @@ async function waitForStoredValue(page, key) {
     }, key);
 }
 
+/**
+ * Gets the domain string suitable for cookies, based on the current hostname.
+ * @param {puppeteer.Page} page The Puppeteer Page object representing the extension's page.
+ * @returns {Promise<string>} A Promise that resolves to the domain string.
+ */
+async function getDomainForCookie(page) {
+    const hostname = await page.evaluate(() => window.location.hostname);
+    const parts = hostname.split(".");
+    return parts.length <= 1 ? 
+        hostname :
+        parts.slice(-2).join(".");
+}
+
 module.exports = {
-    getBrowser,
-    getExtensionId,
-    openPopup,
-    openOptions,
-    openExamplePage,
-    waitForStoredValue,
+  getBrowser,
+  getExtensionId,
+  openPopup,
+  openOptions,
+  openExamplePage,
+  waitForStoredValue,
+  getDomainForCookie
 };
