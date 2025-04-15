@@ -36,6 +36,7 @@ const updateIcon = (status, tabId) => {
         chrome.action.setTitle({ tabId, title: iconInfo.title });
         chrome.action.setIcon({ tabId, path: iconInfo.image });
     } else if (typeof browser !== 'undefined' && browser.pageAction) {
+        browser.pageAction.setTitle({ tabId, title: iconInfo.title });
         browser.pageAction.setIcon({ tabId: tabId, path: iconInfo.image });
     }
 };
