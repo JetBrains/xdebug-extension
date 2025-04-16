@@ -27,10 +27,10 @@ const getTab = async () => {
 
 const updateIcon = (status, tabId) => {
     const iconInfo = {
-        0: { title: 'Disabled', image: 'img/disable16.png' },
-        1: { title: 'Debugging', image: 'img/debug16.png' },
-        2: { title: 'Profiling', image: 'img/profile16.png' },
-        3: { title: 'Tracing', image: 'img/trace16.png' }
+        0: { title: 'Disabled', image: 'img/disable32.png' },
+        1: { title: 'Debugging', image: 'img/debug32.png' },
+        2: { title: 'Profiling', image: 'img/profile32.png' },
+        3: { title: 'Tracing', image: 'img/trace32.png' }
     }[status] || iconInfo[0];
     if (typeof chrome !== 'undefined' && chrome.action) {
         chrome.action.setTitle({ tabId, title: iconInfo.title });

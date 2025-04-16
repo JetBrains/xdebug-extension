@@ -37,10 +37,10 @@ describe('Options Tests', () => {
 
         // Assert
         expect(Object.entries(commands).length).toBe(4);
-        expect(commands['Alt+X']).toBe('execute action')
-        expect(commands['Alt+C']).toBe('toggle debug')
-        expect(commands['Alt+V']).toBe('toggle profile')
-        expect(commands['Alt+B']).toBe('toggle trace')
+        expect(commands['Alt+X']).toBe('Execute action')
+        expect(commands['Alt+C']).toBe('Toggle debugging')
+        expect(commands['Alt+V']).toBe('Toggle profiling')
+        expect(commands['Alt+B']).toBe('Toggle tracing')
         await options.close();
     });
 
@@ -92,7 +92,6 @@ describe('Options Tests', () => {
         expect(storedValue).toBe(key);
         await options.close();
     });
-
 
     test('Should clear all text inputs when the clear button is clicked', async () => {
         // Arrange

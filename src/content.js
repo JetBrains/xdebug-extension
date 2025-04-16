@@ -1,10 +1,17 @@
 const DEFAULT_TRIGGER_VALUE = 'YOUR-NAME';
 
 const getCookie = name =>
-    document.cookie.split(';').find(cookie => cookie.trim().startsWith(`${name}=`))?.split('=')[1];
+    decodeURIComponent(document.cookie.split(';').find(cookie => cookie.trim().startsWith(`${name}=`))?.split('=')[1]);
 
 const setCookie = (name, value, days = 365) =>
-    document.cookie = `${name}=${value};expires=${new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString()};path=/`;
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString()};path=/;domain=${getDomainForCookie()}`;
+
+const getDomainForCookie = () => {
+  const parts = window.location.hostname.split(".");
+  return parts.length <= 1 ? 
+    window.location.hostname:
+    parts.slice(-2).join(".");
+};
 
 const getStatusMap = (settings) => {
     const { xdebugDebugTrigger, xdebugTraceTrigger, xdebugProfileTrigger } = settings;
