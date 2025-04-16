@@ -105,7 +105,7 @@ kbd {
 }
 
 a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -125,6 +125,28 @@ a img {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease;
   background: var(--light-form-bg);
+}
+
+#help a {
+  position: relative;
+}
+
+#help a::before {
+  content: '?';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-125%);
+  width: 1.8ex;
+  height: 1.8ex;
+  font-size: 1.2ex;
+  line-height: 1.8ex;
+  border-radius: 1.2ex;
+  padding: 1px;
+  color: var(--input-focus-border);
+  background: white;
+  border: 1px solid var(--input-focus-border);
+  text-align: center;
 }
 
 button[type="submit"] {
