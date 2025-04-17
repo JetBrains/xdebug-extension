@@ -32,8 +32,13 @@ const updateIcon = (status, tabId) => {
         2: { title: 'Profiling', image: 'img/profile32.png' },
         3: { title: 'Tracing', image: 'img/trace32.png' }
     }[status] || iconInfo[0];
-    chrome.action.setTitle({ tabId, title: iconInfo.title });
-    chrome.action.setIcon({ tabId, path: iconInfo.image });
+    if (typeof chrome !== 'undefined' && chrome.action) {
+        chrome.action.setTitle({ tabId, title: iconInfo.title });
+        chrome.action.setIcon({ tabId, path: iconInfo.image });
+    } else if (typeof browser !== 'undefined' && browser.pageAction) {
+        browser.pageAction.setTitle({ tabId, title: iconInfo.title });
+        browser.pageAction.setIcon({ tabId: tabId, path: iconInfo.image });
+    }
 };
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {

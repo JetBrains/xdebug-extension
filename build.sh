@@ -45,7 +45,6 @@ find . -name "LICENSE"* -exec cp {} "$TMP_XPI_DIR" \; || { echo "Failed to copy 
 
 echo "Copied LICENSE to [$TMP_ZIP_DIR, $TMP_XPI_DIR]"
 
-
 # Firefox (xpi) manifest modifications
 if ! jq --indent 4 '. + {browser_specific_settings: {gecko: {id: "xdebug-helper@JetBrains"}}}' "$TMP_XPI_DIR/manifest.json" > "$TMP_XPI_DIR/manifest.json.tmp"; then
     echo "Failed to add browser-specific settings to Firefox manifest"
@@ -62,6 +61,15 @@ fi
 
 mv "$TMP_XPI_DIR/manifest.json.tmp" "$TMP_XPI_DIR/manifest.json"
 echo "Updated Firefox background script in manifest"
+
+# Firefox action to page_action conversion
+if ! jq --indent 4 'del(.action) + {page_action: {default_icon: "img/disable32.png", default_popup: "popup.html", show_matches: ["http://*/*", "https://*/*"]}}' "$TMP_XPI_DIR/manifest.json" > "$TMP_XPI_DIR/manifest.json.tmp"; then
+    echo "Failed to convert action to page_action in Firefox manifest"
+    exit 1
+fi
+
+mv "$TMP_XPI_DIR/manifest.json.tmp" "$TMP_XPI_DIR/manifest.json"
+echo "Converted action to page_action in Firefox manifest"
 
 ( cd "$TMP_ZIP_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-helper@$VERSION.zip" * ) || { echo "Failed to create zip archive"; exit 1; }
 ( cd "$TMP_XPI_DIR" && zip -T -u -r "$BUILD_DIR_ABSOLUTE/xdebug-helper@$VERSION.xpi" * ) || { echo "Failed to create xpi archive"; exit 1; }
