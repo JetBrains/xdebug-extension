@@ -1,2 +1,4 @@
 /build
 /test/node_modules
+/mac/__MACOSX
+/mac/.DS_Store
