@@ -1,0 +1,87 @@
+env:
+  PROJECT_NAME: xdebug-helper
+
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Chromium
+        run: sudo apt-get update && sudo apt-get install -y chromium-browser
+
+      - name: Run tests
+        working-directory: test
+        env:
+          BROWSER_PATH: /usr/bin/chromium-browser
+        run: npm ci && npm test
+
+      - name: Set VERSION from tag
+        id: version
+        run: |
+          echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+          echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build extension
+        run: ./build.sh "$VERSION"
+
+      - name: Upload Chrome zip as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-zip
+          path: build/${{ env.PROJECT_NAME }}@${{ env.VERSION }}.zip
+
+      - name: Create draft GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "build/$PROJECT_NAME@$VERSION.zip" \
+            "build/$PROJECT_NAME@$VERSION.xpi" \
+            --draft --generate-notes
+
+  Chrome:
+    needs: Build
+    name: Submit (Chrome)
+    environment: Chrome
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: chrome-zip
+
+      - name: Upload to Chrome Web Store
+        run: npx chrome-webstore-upload-cli@3 upload --source "$PROJECT_NAME@${{ needs.Build.outputs.version }}.zip"
+        env:
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+
+#  Firefox:
+#    needs: Build
+#    name: Submit (Firefox)
+#    environment: Firefox
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/download-artifact@v4
+#        with:
+#          name: chrome-zip
+#      - name: Upload to Firefox Add-ons
+#        run: npx web-ext@8 sign --channel listed
+#        env:
+#          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+#          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
