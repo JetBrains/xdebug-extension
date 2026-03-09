@@ -15,7 +15,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  width: 100px;
+  width: max-content;
+  min-width: 100px;
   font-size: 0.8em;
   color: var(--light-text);
 }
@@ -23,7 +24,7 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 100%;
   gap: 0.2em;
 }
 
