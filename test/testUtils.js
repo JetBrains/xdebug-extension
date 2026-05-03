@@ -112,16 +112,23 @@ async function waitForStoredValue(page, key) {
 }
 
 /**
- * Gets the domain string suitable for cookies, based on the current hostname.
+ * Gets the domain string suitable for cookies, by asking the content script.
  * @param {puppeteer.Page} page The Puppeteer Page object representing the extension's page.
  * @returns {Promise<string>} A Promise that resolves to the domain string.
  */
 async function getDomainForCookie(page) {
-    const hostname = await page.evaluate(() => window.location.hostname);
-    const parts = hostname.split(".");
-    return parts.length <= 1 ? 
-        hostname :
-        parts.slice(-2).join(".");
+    const worker = await getExtensionServiceWorker();
+    const domain = await worker.evaluate(async () => {
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { cmd: 'getDomain' });
+        return response?.domain;
+    });
+
+    if (domain === null) {
+        return await page.evaluate(() => window.location.hostname);
+    }
+
+    return domain;
 }
 
 module.exports = {

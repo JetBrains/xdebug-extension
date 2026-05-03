@@ -1,7 +1,8 @@
 const http = require('http');
 
 module.exports = async function (globalConfig, projectConfig) {
-    if (projectConfig.globals.config.examplePage !== 'http://localhost:8765') {
+    const examplePage = projectConfig.globals.config.examplePage;
+    if (!examplePage.includes(':8765')) {
         return;
     }
 
