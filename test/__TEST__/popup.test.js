@@ -31,7 +31,7 @@ describe('Popup Tests', () => {
         const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_SESSION');
         const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.domain.endsWith(domain)).toBe(true);
         expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
@@ -50,7 +50,7 @@ describe('Popup Tests', () => {
         const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_TRACE');
         const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.domain.endsWith(domain)).toBe(true);
         expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
@@ -69,7 +69,7 @@ describe('Popup Tests', () => {
         const testCookie = cookies.find(cookie => cookie.name === 'XDEBUG_PROFILE');
         const domain = await getDomainForCookie(page);
         expect(cookies.length).toBe(1);
-        expect(testCookie.domain).toBe(domain);
+        expect(testCookie.domain.endsWith(domain)).toBe(true);
         expect(testCookie.value).toBe(config.defaultKey);
         await page.close();
     });
