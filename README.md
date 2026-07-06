@@ -110,7 +110,7 @@ Once installed, you can:
 
 ## Contributing
 
-If you want to contribute and make it even better, feel free to fork the repository and submit a pull request. Your contributions are always welcome!
+If you want to contribute and make it even better, feel free to fork the repository and submit a pull request. Your contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for development, testing, and release details.
 
 ## License
 
