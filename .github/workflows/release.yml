@@ -7,12 +7,18 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Released version to (re)submit to Firefox AMO, e.g. 1.0.5'
+        required: true
+        type: string
 
 permissions:
   contents: write
 
 jobs:
   Build:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -96,6 +102,30 @@ jobs:
           cmd: sign
           channel: listed
           source: ${{ env.PROJECT_NAME }}@${{ needs.Build.outputs.version }}.xpi
+          apiKey: ${{ secrets.WEB_EXT_API_KEY }}
+          apiSecret: ${{ secrets.WEB_EXT_API_SECRET }}
+          timeout: 900000
+          approvalTimeout: 0
+
+  # Manually submit an already-released version to Firefox AMO (Firefox-only, no
+  # rebuild, no Chrome). Trigger via "Run workflow" with the version to submit.
+  FirefoxManual:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    name: Submit existing release (Firefox)
+    environment: Firefox
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download xpi from the GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release download "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" --pattern '*.xpi'
+
+      - name: Sign and submit to AMO
+        uses: kewisch/action-web-ext@v2
+        with:
+          cmd: sign
+          channel: listed
+          source: ${{ env.PROJECT_NAME }}@${{ inputs.version }}.xpi
           apiKey: ${{ secrets.WEB_EXT_API_KEY }}
           apiSecret: ${{ secrets.WEB_EXT_API_SECRET }}
           timeout: 900000
