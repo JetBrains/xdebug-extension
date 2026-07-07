@@ -39,6 +39,6 @@ cd test && npm test      # Run all tests
    - If the button is grayed out, check the **Privacy** tab for missing permission justifications or data-usage declarations.
    - Review takes from a few hours to a couple of days; the status flips to "Published" automatically.
 
-5. **Firefox (manual)** — AMO submission is currently commented out in the workflow. Upload the `.xpi` from the GitHub release via the [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/addons).
+5. **Submit on Firefox AMO** — like Chrome, the `Firefox` job is gated by the `Firefox` environment and may need approval in the Actions UI. Once approved, it signs the `.xpi` and submits the new version to the public AMO listing (via [`kewisch/action-web-ext`](https://github.com/kewisch/action-web-ext)). No manual upload needed — track the review status in the [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/addons). The job needs the `Firefox` environment to hold the `WEB_EXT_API_KEY` / `WEB_EXT_API_SECRET` secrets (AMO API credentials from [the credentials page](https://addons.mozilla.org/developers/addon/api/key/)).
 
 6. **Edge (manual)** — upload the `.zip` from the GitHub release via [Microsoft Partner Center](https://partner.microsoft.com/dashboard/microsoftedge/overview).
