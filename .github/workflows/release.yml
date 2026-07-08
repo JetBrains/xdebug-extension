@@ -7,12 +7,18 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Released version to (re)submit to Firefox AMO, e.g. 1.0.5'
+        required: true
+        type: string
 
 permissions:
   contents: write
 
 jobs:
   Build:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -47,6 +53,12 @@ jobs:
           name: chrome-zip
           path: build/${{ env.PROJECT_NAME }}@${{ env.VERSION }}.zip
 
+      - name: Upload Firefox xpi as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firefox-xpi
+          path: build/${{ env.PROJECT_NAME }}@${{ env.VERSION }}.xpi
+
       - name: Create draft GitHub release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -74,17 +86,47 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
-#  Firefox:
-#    needs: Build
-#    name: Submit (Firefox)
-#    environment: Firefox
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/download-artifact@v4
-#        with:
-#          name: chrome-zip
-#      - name: Upload to Firefox Add-ons
-#        run: npx web-ext@8 sign --channel listed
-#        env:
-#          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
-#          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
+  Firefox:
+    needs: Build
+    name: Submit (Firefox)
+    environment: Firefox
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: firefox-xpi
+
+      - name: Sign and submit to AMO
+        uses: kewisch/action-web-ext@v2
+        with:
+          cmd: sign
+          channel: listed
+          source: ${{ env.PROJECT_NAME }}@${{ needs.Build.outputs.version }}.xpi
+          apiKey: ${{ secrets.WEB_EXT_API_KEY }}
+          apiSecret: ${{ secrets.WEB_EXT_API_SECRET }}
+          timeout: 900000
+          approvalTimeout: 0
+
+  # Manually submit an already-released version to Firefox AMO (Firefox-only, no
+  # rebuild, no Chrome). Trigger via "Run workflow" with the version to submit.
+  FirefoxManual:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    name: Submit existing release (Firefox)
+    environment: Firefox
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download xpi from the GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release download "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" --pattern '*.xpi'
+
+      - name: Sign and submit to AMO
+        uses: kewisch/action-web-ext@v2
+        with:
+          cmd: sign
+          channel: listed
+          source: ${{ env.PROJECT_NAME }}@${{ inputs.version }}.xpi
+          apiKey: ${{ secrets.WEB_EXT_API_KEY }}
+          apiSecret: ${{ secrets.WEB_EXT_API_SECRET }}
+          timeout: 900000
+          approvalTimeout: 0
