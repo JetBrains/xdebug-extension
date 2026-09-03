@@ -29,7 +29,7 @@ describe('Cookie Domain Regression Tests', () => {
                 expect(xdebugCookie).toBeDefined();
 
                 const domain = await getDomainForCookie(page);
-                expect(xdebugCookie.domain.endsWith(domain)).toBe(true);
+                expect(xdebugCookie.domain).toBe(domain);
 
                 // Act
                 await page.reload();
@@ -50,8 +50,7 @@ describe('Cookie Domain Regression Tests', () => {
         });
     }
 
-    test('Should handle probe logic correctly (simulated by multi-part hostname)', async () => {
-        // Note: Real public suffixes like .co.uk are hard to test without DNS/Hosts file entries.
+    test('Should scope cookies to the current host', async () => {
         const page = await openExamplePage();
         const popup = await openPopup();
 
@@ -65,6 +64,26 @@ describe('Cookie Domain Regression Tests', () => {
         // Assert
         expect(xdebugCookie.domain.endsWith(domain)).toBe(true);
         
+        await page.close();
+    });
+
+    test('Should remove legacy parent-domain cookies when disabling', async () => {
+        const page = await global.browser.newPage();
+        await page.goto('http://test.127.0.0.1.nip.io:8765');
+
+        await page.evaluate(() => {
+            document.cookie = 'XDEBUG_SESSION=YOUR-NAME;domain=127.0.0.1.nip.io;path=/';
+        });
+        const legacyCookies = await global.browser.cookies();
+        expect(legacyCookies.some(cookie => cookie.name === 'XDEBUG_SESSION')).toBe(true);
+
+        const popup = await openPopup();
+        await popup.locator('label[for="disable"]').click();
+        await page.waitForFunction(() => !document.cookie.includes('XDEBUG_SESSION'));
+
+        const cookies = await global.browser.cookies();
+        expect(cookies.filter(cookie => cookie.name === 'XDEBUG_SESSION')).toHaveLength(0);
+
         await page.close();
     });
 });
