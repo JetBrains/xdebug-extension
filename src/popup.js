@@ -13,12 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     try {
-        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-        if (!tab) {
-            return;
-        }
-
-        const response = await chrome.tabs.sendMessage(tab.id, { cmd: "getStatus" });
+        const response = await chrome.runtime.sendMessage({ cmd: "getStatus" });
         if (response?.status === undefined) {
             return
         }

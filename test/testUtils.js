@@ -133,6 +133,7 @@ async function getDomainForCookie(page) {
 
 module.exports = {
   getBrowser,
+  getExtensionServiceWorker,
   getExtensionId,
   openPopup,
   openOptions,
