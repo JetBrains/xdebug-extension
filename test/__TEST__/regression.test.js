@@ -1,7 +1,8 @@
 const {
     openPopup,
     openExamplePage,
-    getDomainForCookie
+    getDomainForCookie,
+    getExtensionServiceWorker,
 } = require('../testUtils.js');
 
 describe('Cookie Domain Regression Tests', () => {
@@ -65,6 +66,39 @@ describe('Cookie Domain Regression Tests', () => {
         // Assert
         expect(xdebugCookie.domain.endsWith(domain)).toBe(true);
         
+        await page.close();
+    });
+
+    test('Should fall back to the cookies API when a content script is unavailable', async () => {
+        const page = await openExamplePage();
+        const worker = await getExtensionServiceWorker();
+
+        const result = await worker.evaluate(async () => {
+            const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+            const settings = await getSettings();
+            const tabWithoutContentScript = { ...tab, id: chrome.tabs.TAB_ID_NONE };
+
+            const setResponse = await sendTabCommand(
+                tabWithoutContentScript,
+                { cmd: 'setStatus', status: 1 },
+                settings
+            );
+            const getResponse = await sendTabCommand(
+                tabWithoutContentScript,
+                { cmd: 'getStatus' },
+                settings
+            );
+
+            return { setStatus: setResponse.status, currentStatus: getResponse.status };
+        });
+
+        expect(result).toEqual({ setStatus: 1, currentStatus: 1 });
+        const cookies = await global.browser.cookies();
+        expect(cookies).toContainEqual(expect.objectContaining({
+            name: 'XDEBUG_SESSION',
+            value: 'YOUR-NAME',
+        }));
+
         await page.close();
     });
 });
